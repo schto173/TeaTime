@@ -1,0 +1,9 @@
+# secrets and runtime data
+server/.env
+server/data/
+teatime_state.json
+
+# build output
+plugin/build/
+__pycache__/
+*.pyc

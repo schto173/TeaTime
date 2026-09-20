@@ -1,0 +1,42 @@
+# Tea Time voice server: a Mumble server plus the Tea Time bot that creates
+# the campfire channels and moves people into them.
+#
+#   1. cp .env.example .env      and set MUMBLE_SUPERUSER_PASSWORD in it
+#   2. docker compose up -d --build
+#   3. forward TCP and UDP port 64738 on your router to this machine
+#
+# See docs/SERVER-GUIDE.md for the full walk-through.
+
+services:
+  mumble-server:
+    image: mumblevoip/mumble-server:latest
+    container_name: teatime-mumble
+    hostname: mumble-server
+    restart: unless-stopped
+    ports:
+      - "64738:64738/tcp"
+      - "64738:64738/udp"
+    volumes:
+      - ./data:/data
+    environment:
+      MUMBLE_SUPERUSER_PASSWORD: ${MUMBLE_SUPERUSER_PASSWORD:?Set MUMBLE_SUPERUSER_PASSWORD in the .env file}
+      MUMBLE_CONFIG_WELCOMETEXT: "Tea Time voice server"
+      MUMBLE_CONFIG_USERS: 100
+      # Uncomment to require a password to connect at all:
+      # MUMBLE_CONFIG_SERVERPASSWORD: "choose-a-password"
+
+  teatime-bot:
+    build: ./bot
+    container_name: teatime-bot
+    restart: unless-stopped
+    depends_on:
+      - mumble-server
+    environment:
+      MUMBLE_SUPERUSER_PASSWORD: ${MUMBLE_SUPERUSER_PASSWORD:?Set MUMBLE_SUPERUSER_PASSWORD in the .env file}
+    # The bot talks to the Mumble server over the internal Docker network, so
+    # nothing extra has to be exposed. Options (all optional):
+    #   --join-yards 30      how close to a fire you must sit to join its channel
+    #   --empty-after 60     seconds an empty fire's channel is kept
+    #   --timeout 90         seconds without an update before someone counts as gone
+    #   --no-acl             do not stop players from entering the fire channels themselves
+    command: ["python", "teatime_mumble.py", "--host", "mumble-server"]

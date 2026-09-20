@@ -1,0 +1,7 @@
+## Interface: 16001
+## Title: Tea Time
+## Notes: Reports when you sit at a Welcoming Campfire so the Tea Time Mumble plugin can put you in that fire's voice channel.
+## Version: 0.2
+## SavedVariables:
+
+TeaTime.lua
