@@ -18,7 +18,10 @@ whoever hosts one.
 
 1. Copy the `addon/TeaTime` folder into your game's `Interface/AddOns` folder.
 2. Install [Mumble](https://www.mumble.info), then double-click
-   `dist/TeaTime.mumble_plugin` to install the plugin into it.
+   `dist/TeaTime.mumble_plugin` to install the plugin into it. In Mumble's
+   plugin list, enable TeaTime, and make sure the **"Link to game and transmit
+   positional audio"** checkbox at the top of that list is ticked — Mumble does
+   not run any plugin until it is, so this is required for Tea Time to work.
 3. Connect Mumble to the server, then sit down at a campfire in the game.
 
 The full walk-through with pictures of what to expect, troubleshooting and a
