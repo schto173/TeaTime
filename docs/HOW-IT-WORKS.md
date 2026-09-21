@@ -126,6 +126,23 @@ reconnects by itself if the server restarts, and tidies up leftover empty channe
 when it starts. A message without a position (from an older plugin) puts the
 player into one channel for the whole zone.
 
+## Known limitations
+
+**Layering is not accounted for.** On a layered realm the same zone has several
+parallel copies, and two players can share the same coordinates while being on
+different layers and unable to see each other. A fire is matched by zone and
+position only, so in that case they would be put in the same voice channel.
+
+There is no fix inside an addon: the game does not expose the current layer to
+addons, and it does not expose the campfire object either. Both campfire buffs
+("Welcoming Campfire" and "Campfire nearby") are attributed to the player who
+holds them, not to the fire or its creator, so they carry no fire or layer
+identifier. The only signals an addon can read are the player's own position and
+the buff itself, which is what the fire matching already uses.
+
+In practice this rarely bites: sitting at a campfire is a deliberate, close-range,
+social act, so people at the same fire are almost always on the same layer anyway.
+
 ## What has and has not been tested
 
 Tested:
