@@ -13,18 +13,15 @@ get while sitting) and uses the free, open source Mumble voice chat for the audi
 
 ## For players
 
-You need Windows, the WoW Forever beta, and the address of a Tea Time server from
-whoever hosts one.
+You need Windows and the WoW Forever beta.
 
 1. Copy the `addon/TeaTime` folder into your game's `Interface/AddOns` folder.
 2. Install [Mumble](https://www.mumble.info), then double-click
-   `dist/TeaTime.mumble_plugin` to install the plugin into it. In Mumble's
-   plugin list, enable TeaTime, and make sure the **"Link to game and transmit
-   positional audio"** checkbox at the top of that list is ticked — Mumble does
-   not run any plugin until it is, so this is required for Tea Time to work.
-3. In Mumble, add a server using the Tea Time server address you got from its
-   host (there is no public one — someone has to run it; see below if that is
-   you), connect, then sit down at a campfire in the game.
+   `dist/TeaTime.mumble_plugin` to install the plugin into it.
+3. In Mumble's plugin list, enable **TeaTime** and tick the **"Link to game and
+   transmit positional audio"** checkbox at the top of the list.
+4. In Mumble, add a server at **tome.lu**, port 64738, and connect.
+5. Sit down at a campfire in the game.
 
 The full walk-through with pictures of what to expect, troubleshooting and a
 privacy summary is in the [Player guide](docs/PLAYER-GUIDE.md).
