@@ -14,13 +14,16 @@ from nothing to talking.
 
 ## Step 1: install the addon
 
-1. Find your game folder. It is the folder that contains the game itself and,
+1. Download `TeaTime-addon.zip` from the
+   [latest release](https://github.com/schto173/TeaTime/releases/latest) and
+   extract it. You get a `TeaTime` folder containing `TeaTime.lua` and
+   `TeaTime.toc`.
+2. Find your game folder. It is the folder that contains the game itself and,
    inside it, a folder for the beta, for example
    `World of Warcraft\_classic_beta_`. The name can differ between beta builds.
-2. Copy the whole `TeaTime` folder from this repository's `addon` folder into
-   `Interface\AddOns` inside that folder. You should end up with
-   `...\Interface\AddOns\TeaTime\TeaTime.lua`.
-3. Start the game. On the character selection screen, open the AddOns list and
+3. Put the `TeaTime` folder into `Interface\AddOns` inside that folder. You
+   should end up with `...\Interface\AddOns\TeaTime\TeaTime.lua`.
+4. Start the game. On the character selection screen, open the AddOns list and
    make sure Tea Time is ticked. If it is marked "out of date", tick the option
    to load out of date addons.
 
@@ -29,10 +32,12 @@ short status line.
 
 ## Step 2: install Mumble and the plugin
 
-1. Download and install Mumble from https://www.mumble.info.
-2. Double-click `TeaTime.mumble_plugin` (in this repository's `dist` folder).
-   Mumble installs it. If double-clicking does nothing, open Mumble, go to
-   Configure, then Settings, then Plugins, and use the Install plugin button.
+1. Download and install Mumble from https://www.mumble.info/downloads/.
+2. Download `TeaTime.mumble_plugin` from the
+   [latest release](https://github.com/schto173/TeaTime/releases/latest) and
+   double-click it. Mumble installs it. If double-clicking does nothing, open
+   Mumble, go to Configure, then Settings, then Plugins, and use the Install
+   plugin button.
 3. In the same Plugins list, find TeaTime and make sure it is enabled, including
    its positional audio option.
 4. Under the Audio Output settings, make sure positional audio is switched on.

@@ -15,9 +15,12 @@ get while sitting) and uses the free, open source Mumble voice chat for the audi
 
 You need Windows and the WoW Forever beta.
 
-1. Copy the `addon/TeaTime` folder into your game's `Interface/AddOns` folder.
-2. Install [Mumble](https://www.mumble.info), then double-click
-   `dist/TeaTime.mumble_plugin` to install the plugin into it.
+Download both files from the [latest release](https://github.com/schto173/TeaTime/releases/latest): `TeaTime-addon.zip` and `TeaTime.mumble_plugin`.
+
+1. Extract `TeaTime-addon.zip` and put the `TeaTime` folder into your game's
+   `Interface/AddOns` folder.
+2. Install [Mumble](https://www.mumble.info/downloads/), then double-click
+   `TeaTime.mumble_plugin` to install the plugin into it.
 3. In Mumble's plugin list, enable **TeaTime** and tick the **"Link to game and
    transmit positional audio"** checkbox at the top of the list.
 4. In Mumble, add a server at **tome.lu**, port 64738, and connect.
