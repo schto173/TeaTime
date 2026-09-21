@@ -88,6 +88,7 @@ Some things that are normal:
 | `/teatime verbose` | Prints what the addon is doing, useful for troubleshooting |
 | `/teatime grace 15` | Sets how many seconds a missing buff is tolerated before counting as standing up |
 | `/teatime auras` | Lists your buffs with their spell IDs |
+| `/teatime fire` | While seated, prints what the campfire buff exposes (for debugging) |
 
 ## Troubleshooting
 

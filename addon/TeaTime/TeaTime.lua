@@ -75,6 +75,41 @@ local function listAuras()
     end
 end
 
+-- Returns the campfire aura's data table (not just a bool), or nil.
+local function campfireAura()
+    if SIT_BUFF_ID then
+        local a = C_UnitAuras.GetPlayerAuraBySpellID(SIT_BUFF_ID)
+        if a then return a end
+    end
+    for i = 1, 40 do
+        local a = C_UnitAuras.GetAuraDataByIndex("player", i, "HELPFUL")
+        if not a then break end
+        if a.name == SIT_BUFF_NAME then return a end
+    end
+    return nil
+end
+
+-- Probe: can we read a GUID for the campfire itself? If the buff exposes a
+-- sourceUnit, UnitGUID on it may return a GameObject/Creature GUID that both
+-- identifies the fire and (via its serverID segment) distinguishes layers.
+local function fireInfo()
+    print("|cffffd100TeaTime|r campfire probe:")
+    local a = campfireAura()
+    if not a then
+        print("  no campfire buff on you - sit at a fire first")
+        return
+    end
+    print(string.format("  buff: %s (spellId %s)", tostring(a.name), tostring(a.spellId)))
+    local src = a.sourceUnit
+    print("  sourceUnit: " .. tostring(src))
+    if src then
+        print("  sourceGUID: " .. tostring(UnitGUID(src)))
+        print("  sourceName: " .. tostring(UnitName(src)))
+    else
+        print("  sourceGUID: (none - buff reports no readable source unit)")
+    end
+end
+
 -- The 60 s buff drops off and comes back while you stay seated, with a gap
 -- of a few seconds. So a missing buff only counts as standing up if it is
 -- still missing after GRACE seconds. Change it live: /teatime grace <seconds>
@@ -152,12 +187,14 @@ SlashCmdList["TEATIME"] = function(msg)
         print("|cffffd100TeaTime|r grace set to " .. GRACE .. "s")
     elseif msg == "auras" then
         listAuras()
+    elseif msg == "fire" then
+        fireInfo()
     elseif msg == "verbose" then
         verbose = not verbose
         print("|cffffd100TeaTime|r verbose " .. (verbose and "on" or "off"))
     else
         print("|cffffd100TeaTime|r seated=" .. tostring(seated)
             .. " grace=" .. GRACE .. "s"
-            .. "  /teatime test | verbose | auras | grace <s>")
+            .. "  /teatime test | verbose | auras | fire | grace <s>")
     end
 end
