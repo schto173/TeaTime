@@ -89,25 +89,32 @@ local function campfireAura()
     return nil
 end
 
--- Probe: can we read a GUID for the campfire itself? If the buff exposes a
--- sourceUnit, UnitGUID on it may return a GameObject/Creature GUID that both
--- identifies the fire and (via its serverID segment) distinguishes layers.
-local function fireInfo()
-    print("|cffffd100TeaTime|r campfire probe:")
-    local a = campfireAura()
-    if not a then
-        print("  no campfire buff on you - sit at a fire first")
+-- Probe: can we read a GUID tied to the campfire? Checks both campfire buffs.
+-- If either exposes a sourceUnit that is not the player, UnitGUID on it may
+-- return a GameObject/Creature GUID that identifies the fire and (via its
+-- serverID segment) distinguishes layers.
+local NEARBY_BUFF_ID = 1283391  -- "Campfire nearby" (standing next to a fire)
+
+local function probeAura(label, aura)
+    if not aura then
+        print("  " .. label .. ": not present")
         return
     end
-    print(string.format("  buff: %s (spellId %s)", tostring(a.name), tostring(a.spellId)))
-    local src = a.sourceUnit
-    print("  sourceUnit: " .. tostring(src))
+    print(string.format("  %s: %s (spellId %s)", label, tostring(aura.name), tostring(aura.spellId)))
+    local src = aura.sourceUnit
+    print("    sourceUnit: " .. tostring(src))
     if src then
-        print("  sourceGUID: " .. tostring(UnitGUID(src)))
-        print("  sourceName: " .. tostring(UnitName(src)))
+        print("    sourceGUID: " .. tostring(UnitGUID(src)))
+        print("    sourceName: " .. tostring(UnitName(src)))
     else
-        print("  sourceGUID: (none - buff reports no readable source unit)")
+        print("    sourceGUID: (none - no readable source unit)")
     end
+end
+
+local function fireInfo()
+    print("|cffffd100TeaTime|r campfire probe:")
+    probeAura("Welcoming Campfire", campfireAura())
+    probeAura("Campfire nearby", C_UnitAuras.GetPlayerAuraBySpellID(NEARBY_BUFF_ID))
 end
 
 -- The 60 s buff drops off and comes back while you stay seated, with a gap
