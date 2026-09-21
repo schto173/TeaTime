@@ -22,7 +22,9 @@ whoever hosts one.
    plugin list, enable TeaTime, and make sure the **"Link to game and transmit
    positional audio"** checkbox at the top of that list is ticked — Mumble does
    not run any plugin until it is, so this is required for Tea Time to work.
-3. Connect Mumble to the server, then sit down at a campfire in the game.
+3. In Mumble, add a server using the Tea Time server address you got from its
+   host (there is no public one — someone has to run it; see below if that is
+   you), connect, then sit down at a campfire in the game.
 
 The full walk-through with pictures of what to expect, troubleshooting and a
 privacy summary is in the [Player guide](docs/PLAYER-GUIDE.md).
